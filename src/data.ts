@@ -1,7 +1,7 @@
 export const slides = [
     {
         src: '../public/images/gog.jpg',
-        title: 'Slide Title One',
+        title: 'David Goggins',
         description: 'Slide Description One\n\nthis is new line',
       },
     {

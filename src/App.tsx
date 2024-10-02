@@ -28,11 +28,17 @@ function App() {
     setSlides(JSON.parse(retrievedObject || '{}'))
     console.log(slides)
     setRender(true);
-  },[])
+  },[showDelete])
 
 
   const imageSubmit = (e: any) => {
     e.preventDefault();
+    const URL_REGEX= /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+    if(!URL_REGEX.test(theUrl)){
+            
+      setErrMsg("invalid url")
+      return;
+  }
     if(theUrlLength === 0){
       setErrMsg('Cant leave empty')
       return;
@@ -72,7 +78,7 @@ function App() {
     
     {render ? (
     <>
-      <Images passed={showDelete} data={slides} onClick={(curIdx)=>setIndex(curIdx)} />
+      <Images passedIt={setShowDelete} passed={showDelete} data={slides} onClick={(curIdx)=>setIndex(curIdx)} />
 
       <div style={{ width: "100%", maxWidth: "900px", aspectRatio: "3 / 2" }}>
         <Lightbox

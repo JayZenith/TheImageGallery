@@ -8,6 +8,7 @@ interface ImagesProps{
     }[];
     onClick: (idx: number) => void;
     passed: boolean
+    passedIt: Function;
 }
 
 
@@ -22,11 +23,11 @@ const Images: FC<ImagesProps> = (props) => {
     console.log(idx)
     var retrievedObject = localStorage.getItem('theKey');
     let arr = JSON.parse(retrievedObject || '{}')
-    console.log(arr)
-    
+    //console.log(arr)
     arr.splice(idx, 1); 
-    console.log(arr)
+    //console.log(arr)
     localStorage.setItem("theKey", JSON.stringify(arr));
+    props.passedIt(false);
   }
 
   return (

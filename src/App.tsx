@@ -12,6 +12,20 @@ import Images from './Images'
 function App() {
   const [open, setOpen] = useState<boolean>(false)
   const [index, setIndex] = useState<number>(-1)
+  const [theUrl, setTheUrl] = useState<string>("")
+
+
+
+  const imageSubmit = (e: any) => {
+    e.preventDefault();
+    let theArray = slides;
+    theArray.push({src:theUrl, title:"a title", description: "descr"})
+    setTheUrl('')
+  }
+
+  const handleUrl = (e: any) => {
+    setTheUrl(e.target.value);
+  }
 
   return (
     <>
@@ -22,6 +36,13 @@ function App() {
         </ul>
       </nav>
     </header>
+    <div className='addUrl'>
+      <form onSubmit={imageSubmit}>
+        <input type="text" placeholder="" value={theUrl} onChange={(e)=>handleUrl(e)}/>
+        <button type="submit" className='submitButton'>Submit</button>
+
+      </form>
+    </div>
     {/*<button onClick={()=>setOpen(true)}>Open Box</button>*/}
     <Images data={slides} onClick={(curIdx)=>setIndex(curIdx)} />
 

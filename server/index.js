@@ -22,17 +22,18 @@ const storage = multer.diskStorage({
     filename: (req,file,cb)=>{
       cb(null, file.fieldname+"_"+Date.now()+path.extname(file.originalname));
     }
-  })
+})
   
-  const upload = multer({
+const upload = multer({
     storage: storage
-  })
+})
 
-  const fs=require('fs')
+const fs=require('fs')
 
-  app.post("/upload", upload.single('image'), (req,res)=>{
+app.post("/upload", upload.single('image'), (req,res)=>{
     const image = req.file.filename;
-    console.log("image uploaded!")
+    console.log(image)
+    res.send({imageName: image})
 
     /*
     if(result[0].ImageData != "avatar.jpg"){
@@ -45,10 +46,9 @@ const storage = multer.diskStorage({
         })
     }
     */
-    
-   
-      
   });
+
+ 
 
 
 const PORT = process.env.PORT || 5174;

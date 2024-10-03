@@ -19,6 +19,8 @@ function App() {
   const [theUrlLength, setTheUrlLength] = useState<number>(0)
   const [errMsg, setErrMsg] = useState<string>("")
   const [showDelete, setShowDelete] = useState<boolean>(false)
+  const [imageUpload, setImageUpload] = useState<boolean>(false)
+
 
 
   
@@ -29,7 +31,8 @@ function App() {
     setSlides(JSON.parse(retrievedObject || '{}'))
     console.log(slides)
     setRender(true);
-  },[showDelete])
+    setImageUpload(false)
+  },[showDelete, imageUpload])
 
 
   const imageSubmit = (e: any) => {
@@ -75,12 +78,12 @@ function App() {
         <button type="submit" className='submitButton'>Submit</button>
       </form>
       <button className='showDeleteButton' onClick={()=>setShowDelete(!showDelete)}>Show Delete</button>
-      <SetImage />
+      <SetImage imageUpload={imageUpload} setImageUpload={setImageUpload} slides={slides} />
     </div>
     
     {render ? (
     <>
-      <Images passedIt={setShowDelete} passed={showDelete} data={slides} onClick={(curIdx)=>setIndex(curIdx)} />
+      <Images passedIt={setShowDelete} passed={showDelete}  data={slides} onClick={(curIdx)=>setIndex(curIdx)} />
 
       <div style={{ width: "100%", maxWidth: "900px", aspectRatio: "3 / 2" }}>
         <Lightbox
@@ -112,15 +115,15 @@ function App() {
 export default App
 
 
-function SetImage(){
+function SetImage(props: any){
   const [file, setFile] = useState<any>('')
   //const { imageState, setImageState } = useContext(ImageContext)
   //const { theImageUpload, setTheImageUpload } = useContext(ImageContext)
   
   let imageUploadRef = useRef<HTMLInputElement>(null);
 
-  const handleImage = (e) =>{
-      console.log(e.target.files[0])
+  const handleImage = (e : any) =>{
+      //console.log(e.target.files[0])
       setFile(e.target.files[0])
   }
 
@@ -133,14 +136,21 @@ function SetImage(){
       axios.post('http://localhost:5174/upload', formData, {
       //axios.post('http://3.20.232.190:3001/upload', formData, {
       })
-      .then((res)=>{
-        alert("returned")
+      .then((resp : any)=>{
+        console.log(resp.data.imageName)
+        let theArray = props.slides;
+        //http://localhost:5174/images/image_1727922139784.png
+        theArray.push({src:`http://localhost:5174/images/${resp.data.imageName}`, title:"a title", description: "descr"})
+        props.setImageUpload(true)
+        localStorage.setItem("theKey", JSON.stringify(theArray));
+        /*
           if(res.data.Status==="Image Upload Success"){
               alert("File Upload Succeeded")
               //setImageState(true);
           }else{
               alert("File Upload Failed")
           }
+        */
       })
       .catch(err=>console.log(err));
   }

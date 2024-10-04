@@ -70,10 +70,13 @@
 }
 
 .addUrl{
+
+  width: 40%;
+  margin: auto auto;
   padding-top: 50px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   
 }
@@ -126,24 +129,53 @@ form p{
   border: 1px solid white;
 }
 
-.showDeleteButton{
 
-}
 
 .uploadWrapper{
+  width: 100%;
+  margin: auto auto;
   margin-top: 10px;
   display: flex;
-  width: 420px;
+  align-items: center;
+  justify-content: flex-start;
+
+ 
 }
 
-.showDeleteButton{
-  margin-left: 45%;
-  margin-right: 45%;
-  height: 35px;
-  width: 90px;
-  border-radius: 10px;
+.uploadWrapper h2{
+  margin-right: 10px;
+}
+
+
+
+
+input[type="file"] {
+  width: 350px;
+
+  margin-right: 35px;
+}
+
+.uploadButton{
+  height: 45px;
+  width: 100px;
+  font-size: 16px;
+  border-radius: 20px;
   background-color: black;
   color: white;
+}
+
+
+
+
+.showDeleteButton{
+    
+    height: 45px;
+    width: 50px;
+    font-size: 20px;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+
 }
 
 .uploadInput{
@@ -155,14 +187,34 @@ form p{
 
 }
 
+@media all and (max-width: 900px){
+  .addUrl{
+    
+    margin: 0 auto;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    
+  }
 
-
-.uploadButton{
-  height: 35px;
-  width: 90px;
-  border-radius: 10px;
-  background-color: black;
-  color: white;
-
+  .makeRow{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
+  .uploadWrapper{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+  }
+
+
 }
+
+

@@ -86,8 +86,8 @@ function App() {
     
     {render ? (
       
-    <div className=''>
-      <button className='showDeleteButton' onClick={()=>setShowDelete(!showDelete)}>Delete</button>
+    <div className='test'>
+      <button className='showDeleteButton' onClick={()=>setShowDelete(!showDelete)}><i className="bi bi-trash"></i></button>
       <Images passedIt={setShowDelete} passed={showDelete}  data={slides} onClick={(curIdx)=>setIndex(curIdx)} />
 
       <div style={{ width: "100%", maxWidth: "900px", aspectRatio: "3 / 2" }}>
@@ -122,9 +122,7 @@ export default App
 
 function SetImage(props: any){
   const [file, setFile] = useState<any>('')
-  //const { imageState, setImageState } = useContext(ImageContext)
-  //const { theImageUpload, setTheImageUpload } = useContext(ImageContext)
-  
+
   let imageUploadRef = useRef<HTMLInputElement>(null);
 
   const handleImage = (e : any) =>{
@@ -132,53 +130,27 @@ function SetImage(props: any){
       setFile(e.target.files[0])
   }
 
-  //http://3.143.203.151:3001/
-
   const handleApi = () => {
       const formData = new FormData()
       formData.append('image', file)
-      //console.log(formData);
       axios.post('http://localhost:5174/upload', formData, {
-      //axios.post('http://3.20.232.190:3001/upload', formData, {
       })
       .then((resp : any)=>{
         console.log(resp.data.imageName)
         let theArray = props.slides;
-        //http://localhost:5174/images/image_1727922139784.png
+
         theArray.push({src:`http://localhost:5174/images/${resp.data.imageName}`, title:"a title", description: "descr"})
         props.setImageUpload(true)
         localStorage.setItem("theKey", JSON.stringify(theArray));
-        /*
-          if(res.data.Status==="Image Upload Success"){
-              alert("File Upload Succeeded")
-              //setImageState(true);
-          }else{
-              alert("File Upload Failed")
-          }
-        */
+
       })
       .catch(err=>console.log(err));
   }
 
-  /*
-  useEffect(()=>{ 
-      let theImageHandler = (e)=>{
-        //console.log(menuRef.current.contains(e.target))
-        if(!imageUploadRef.current?.contains(e.target) ){ //? allows it to work in / and /signup
-            setTheImageUpload(false);
-    
-            
-        }
-      }
-      document.addEventListener("mousedown", theImageHandler);
-      return()=>{
-        document.removeEventListener("mousedown", theImageHandler);
-      }
-     })
-    */
 
   return(
       <div ref={imageUploadRef} className='uploadWrapper'>
+        <h2>Upload Own Image: </h2>
               <input className='uploadInput' type="file" name="file"
                   onChange={handleImage}
               ></input>

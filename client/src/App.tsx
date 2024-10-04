@@ -77,12 +77,14 @@ function App() {
         {/*<p>{theUrlLength}</p>*/}
         <button type="submit" className='submitButton'>Submit</button>
       </form>
-      <button className='showDeleteButton' onClick={()=>setShowDelete(!showDelete)}>Show Delete</button>
+      
       <SetImage imageUpload={imageUpload} setImageUpload={setImageUpload} slides={slides} />
     </div>
     
     {render ? (
-    <>
+      
+    <div className='therapper'>
+      <button className='showDeleteButton' onClick={()=>setShowDelete(!showDelete)}>Delete</button>
       <Images passedIt={setShowDelete} passed={showDelete}  data={slides} onClick={(curIdx)=>setIndex(curIdx)} />
 
       <div style={{ width: "100%", maxWidth: "900px", aspectRatio: "3 / 2" }}>
@@ -105,7 +107,7 @@ function App() {
         
         />
       </div>
-    </>) : <></>}
+    </div>) : <></>}
 
   
     </>
@@ -174,14 +176,9 @@ function SetImage(props: any){
 
   return(
       <div ref={imageUploadRef} className='uploadWrapper'>
-          {/*<div className={EditProfileCSS.exit} onClick={()=>setTheImageUpload(!theImageUpload)}>x</div>*/}
-          <div className='upload'>
-              
-              <input type="file" name="file"
+              <input className='uploadInput' type="file" name="file"
                   onChange={handleImage}
               ></input>
-              
-          </div>
           <button className='uploadButton' onClick={handleApi}>Submit File</button>
       </div>
   )

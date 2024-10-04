@@ -64,6 +64,7 @@
 .addUrl{
   padding-top: 60px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   
@@ -85,7 +86,7 @@ form{
 
 .submitButton{
   height: 35px;
-  width: 80px;
+  width: 90px;
   border-radius: 10px;
   background-color: black;
   color: white;
@@ -94,4 +95,41 @@ form{
 
 .showDeleteButton{
 
+}
+
+.uploadWrapper{
+  margin-top: 10px;
+  display: flex;
+  width: 420px;
+}
+
+.showDeleteButton{
+  margin-left: 45%;
+  margin-right: 45%;
+  height: 35px;
+  width: 90px;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+}
+
+.uploadInput{
+  
+  margin-right: 70px;
+  width: auto;
+  display: flex;
+  height: 40px;
+
+}
+
+
+
+.uploadButton{
+  height: 35px;
+  width: 90px;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+
+  
 }

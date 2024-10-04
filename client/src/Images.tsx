@@ -1,4 +1,5 @@
 import { FC } from "react"; 
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 interface ImagesProps{
     data:{
@@ -34,7 +35,7 @@ const Images: FC<ImagesProps> = (props) => {
     <div className="images-container">
         {data.map((slide, index ) => (
             <div>
-            {props.passed ? (<span className="abs" onClick={()=>deletePic(index)}>X</span> ) : <></>}
+            {props.passed ?  (<span className="abs" onClick={()=>deletePic(index)}><i className="bi bi-x-circle"></i></span> ) : <></>}
             <div onClick={()=>handleClickImage(index)} key={index} className="image">
                 <img src={slide.src} alt={slide.description} />
             </div>

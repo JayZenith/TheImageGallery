@@ -10,6 +10,7 @@ import Images from './Images'
 import axios from 'axios';
 
 
+
 function App() {
   const [open, setOpen] = useState<boolean>(false)
   const [index, setIndex] = useState<number>(-1)
@@ -65,7 +66,7 @@ function App() {
     <>
     <header>
       <nav className='navbar'>
-        <ul className='navbarList'> 
+        <ul> 
           <li><h2><a href="#">Home</a></h2></li>
         </ul>
       </nav>
@@ -73,9 +74,11 @@ function App() {
     <div className='addUrl'>
       <form onSubmit={imageSubmit}>
         <p>{errMsg}</p>
-        <input className='urlInput' type="text" placeholder="Enter image link" value={theUrl} onChange={(e)=>handleUrl(e)}/>
-        {/*<p>{theUrlLength}</p>*/}
-        <button type="submit" className='submitButton'>Submit</button>
+        <div className='makeRow'>
+          <h2>Upload Image URL:</h2>
+          <input className='urlInput' type="text" placeholder="Enter image link" value={theUrl} onChange={(e)=>handleUrl(e)}/>
+          <button type="submit" className='submitButton'>Submit</button>
+        </div>
       </form>
       
       <SetImage imageUpload={imageUpload} setImageUpload={setImageUpload} slides={slides} />
@@ -83,7 +86,7 @@ function App() {
     
     {render ? (
       
-    <div className='therapper'>
+    <div className=''>
       <button className='showDeleteButton' onClick={()=>setShowDelete(!showDelete)}>Delete</button>
       <Images passedIt={setShowDelete} passed={showDelete}  data={slides} onClick={(curIdx)=>setIndex(curIdx)} />
 

@@ -1,40 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .images-container{
-  padding-top: 40px;
-  max-width: 1200px;
-  margin: 2rem auto;
+ 
+  padding-top: 20px;
+  max-width: 1300px;
+
+  margin: auto auto; /*center*/
   display: grid;
+  /*grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));*/
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 1rem;
 }
 
 .image{
-  box-sizing: border-box;
+  /*box-sizing: border-box;*/
+
+  padding: 5px;
   width: 100%;
   height: 20rem;
   cursor: pointer;
 }
 
-/*
-.image:hover{
-  padding: 10px;
-  transition: ease-in .4s;
-  border-radius: 10px;
-  background-color: rgb(0, 0, 0);
-}
-  */
-
 
 .image img{
+  background-color: red;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
 }
 
+.image img:hover{
+  width: 100%;
+  height: 100%;
+  transition: ease-in .4s;
+}
+
 .abs{
  
   background-color: white;
   font-size: 30px;
+  cursor: pointer;
 }
 
 
@@ -52,17 +60,17 @@
 
 }
 
-.navbar .navbarList{
+.navbar ul{
   list-style-type: none;
 }
 
-.navbar .navbarList a{
+.navbar ul a{
   text-decoration: none;
   color: white;
 }
 
 .addUrl{
-  padding-top: 60px;
+  padding-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,23 +79,48 @@
 }
 
 form{
+
   display: flex;
   align-items: center;
   justify-content: center;
- 
+  flex-direction: column;
+  height: auto;
+  margin-top: 5px;
 }
 
+form p{
+  font-size: 1.2rem;
+  margin: 0;
+  color: red;
+}
+
+
+.makeRow{
+  display: flex;
+  align-items: center;
+}
+
+.makeRow h2{
+  margin-right: 10px;
+}
+
+
+
 .urlInput{
-  width: 300px;
+  width: 350px;
   height: 30px;
-  border-radius: 5px;
+  border-radius: 20px;
+  padding: 5px;
+  font-size: 16px;
   margin-right: 20px;
+  border: 4px solid black;
 }
 
 .submitButton{
-  height: 35px;
-  width: 90px;
-  border-radius: 10px;
+  height: 45px;
+  width: 100px;
+  font-size: 16px;
+  border-radius: 20px;
   background-color: black;
   color: white;
   border: 1px solid white;
